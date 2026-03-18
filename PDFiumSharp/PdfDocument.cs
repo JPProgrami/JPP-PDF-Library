@@ -16,6 +16,7 @@ namespace PDFiumSharp
 {
     public sealed class PdfDocument : NativeWrapper<FPDF_DOCUMENT>
     {
+		public FPDF_DOCUMENT PDFiumDocument { get; }
 		/// <summary>
 		/// Gets the pages in the current <see cref="PdfDocument"/>.
 		/// </summary>
@@ -62,6 +63,7 @@ namespace PDFiumSharp
 		{
 			if (doc.IsNull)
 				throw new PDFiumException();
+			this.PDFiumDocument = doc;
 			Pages = new PdfPageCollection(this);
 			Destinations = new PdfDestinationCollection(this);
 		}
