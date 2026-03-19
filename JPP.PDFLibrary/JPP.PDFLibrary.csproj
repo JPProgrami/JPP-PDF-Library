@@ -7,7 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PDFium.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="PDFium.g.cs">
+      <DependentUpon>PDFium.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="PDFium.Windows" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PDFiumSharp\PDFiumSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="PDFium.tt">
+      <LastGenOutput>PDFium.g.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>
