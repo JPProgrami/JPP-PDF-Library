@@ -27,7 +27,7 @@ namespace JPP.PDFLibrary
                     {
                         Debug.WriteLine(ex.Message + "\n PANIC!!! AT PDF PAGE " + pgcount);
                     }
-                    sb.Append(Environment.NewLine+Environment.NewLine+Environment.NewLine + "-- PAGE " +(p.Index+1)+" / "+this.Pages.Count+" --"+Environment.NewLine+Environment.NewLine+Environment.NewLine);
+                    //sb.Append(Environment.NewLine+Environment.NewLine+Environment.NewLine + "-- PAGE " +(p.Index+1)+" / "+this.Pages.Count+" --"+Environment.NewLine+Environment.NewLine+Environment.NewLine);
                     pgcount++;
                 }
                 return sb.ToString();
