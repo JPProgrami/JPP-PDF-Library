@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PDFium.Windows" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PDFiumSharp\PDFiumSharp.csproj" />
   </ItemGroup>
 
@@ -35,6 +32,38 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="C:\Users\PECA\.nuget\packages\pdfium.x64\4648.0.0\Build\x64\pdfium.dll" Link="pdfium.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\PECA\.nuget\packages\pdfium.windows\1.0.0\build\pdfium_x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\PECA\.nuget\packages\pdfium.windows\1.0.0\build\pdfium_x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\PECA\.nuget\packages\pdfium.windows\1.0.0\build\pdfium_x86.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\PECA\.nuget\packages\pdfium.windows\1.0.0\build\pdfium_x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\PECA\.nuget\packages\pdfium.windows\1.0.0\build\pdfium_x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\PECA\.nuget\packages\pdfium.windows\1.0.0\build\pdfium_x86.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="10.0.5" />
   </ItemGroup>
 
 </Project>

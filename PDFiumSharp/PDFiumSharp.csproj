@@ -27,6 +27,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\PECA\.nuget\packages\pdfium.x64\4648.0.0\Build\x64\pdfium.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="PDFium.g.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -40,6 +44,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="pdfium_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="pdfium_x86.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Types\FPDF_Typedefs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FPDF_Typedefs.g.cs</LastGenOutput>
@@ -71,6 +81,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>FPDF_Typedefs.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\" />
   </ItemGroup>
 
 </Project>

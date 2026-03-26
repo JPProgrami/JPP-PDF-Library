@@ -2497,16 +2497,22 @@ namespace PDFiumSharp
 
 		static partial class PlatformInvoke
 		{
-			[DllImport("pdfium_x86", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
-			internal static extern bool FPDFText_SetText_x86(FPDF_PAGEOBJECT text_object, [MarshalAs(UnmanagedType.LPStr)] string text);
+            [DllImport("pdfium_x86", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
+            internal static extern bool FPDFText_SetText_x86(
+    FPDF_PAGEOBJECT text_object,
+    [MarshalAs(UnmanagedType.LPWStr)] string text
+);
 
-			[DllImport("pdfium_x64", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
-			internal static extern bool FPDFText_SetText_x64(FPDF_PAGEOBJECT text_object, [MarshalAs(UnmanagedType.LPStr)] string text);
-		}
+            [DllImport("pdfium_x64", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
+            internal static extern bool FPDFText_SetText_x64(
+                FPDF_PAGEOBJECT text_object,
+                [MarshalAs(UnmanagedType.LPWStr)] string text
+            );
+        }
 
-		/// <include file='PDFium.xml' path='Documentation/FPDFText_SetText/*'/>
-		public static bool FPDFText_SetText(FPDF_PAGEOBJECT text_object, [MarshalAs(UnmanagedType.LPStr)] string text)
-		{
+        /// <include file='PDFium.xml' path='Documentation/FPDFText_SetText/*'/>
+        public static bool FPDFText_SetText(FPDF_PAGEOBJECT text_object,[MarshalAs(UnmanagedType.LPWStr)] string text)
+        {
 
 			if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
 				lock(_lock) { return PlatformInvoke.FPDFText_SetText_x64(text_object, text); }
