@@ -248,6 +248,18 @@ namespace PDFiumSharp
 		{
 			FPDFPage_InsertObject(page, page_obj);
 			page_obj = FPDF_PAGEOBJECT.Null;
+        }
+
+        /// <summary>Remove FPDF_PAGEOBJECT from FPDF_PAGE.</summary>
+        /// <param name = "page" > handle to a page</param>
+        /// <param name = "page_object" > handle to a page object to be removed.</param>
+        /// <returns>Returns TRUE on success.</returns>
+
+        public static bool FPDFPage_RemoveObject(FPDF_PAGE page, ref FPDF_PAGEOBJECT page_object)
+		{
+			bool ret = FPDFPage_RemoveObject(page, page_object);
+			page_object = FPDF_PAGEOBJECT.Null;
+			return ret;
 		}
 
 		/// <summary>
@@ -306,6 +318,17 @@ namespace PDFiumSharp
 				count = data.Length - index;
 			return FPDFText_LoadFont(document, ref data[index], (uint)count, font_type, cid);
 		}
+
+        /// <summary>
+        /// Get number of page objects inside page
+        /// </summary>
+        /// <param name="page">handle to a page.</param>
+        /// <returns>Returns the number of objects in page.</returns>
+        public static int FPDFPage_CountObjects(ref FPDF_PAGE page)
+		{
+			return FPDFPage_CountObjects(page);
+		}
+
 
 		#endregion
 

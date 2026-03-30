@@ -1,8 +1,8 @@
-﻿<# /*
+﻿<#/*
 This file is part of PDFiumSharp, a wrapper around the PDFium library for the .NET framework.
 Copyright (C) 2017 Tobias Meyer
 License: Microsoft Reciprocal License (MS-RL)
-*/ #>
+*/#>
 <#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
@@ -344,13 +344,12 @@ var Imports = new[] {
 		  Documentation = new string[] { "<seealso cref='PdfPage.Orientation'/>" },
 		  Attributes = new string[] { } },
 
-		  // The |page_obj| will be automatically freed.
 	new { Method = "void FPDFPage_InsertObject(FPDF_PAGE page, FPDF_PAGEOBJECT page_obj)",
 		  AccessModifier = "private",
 		  Documentation = new string[] { },
 		  Attributes = new string[] { } },
 
-	new { Method = "int FPDFPage_CountObject(FPDF_PAGE page)",
+	new { Method = "int FPDFPage_CountObjects(FPDF_PAGE page)",
 		  AccessModifier = "public",
 		  Documentation = new string[] { },
 		  Attributes = new string[] { } },
@@ -474,6 +473,11 @@ var Imports = new[] {
 		  AccessModifier = "private",
 		  Documentation = new string[] { },
 		  Attributes = new string[] { } },
+		  	new { Method ="bool FPDFPage_RemoveObject(FPDF_PAGE page, FPDF_PAGEOBJECT page_object)",
+	      AccessModifier = "public",
+		  Documentation = new string[] { },
+		  Attributes = new string[] { } 
+		  },
 
 	// https://pdfium.googlesource.com/pdfium/+/master/public/fpdf_ext.h
 	new { Method = "PageModes FPDFDoc_GetPageMode(FPDF_DOCUMENT document)",
@@ -733,6 +737,7 @@ var Imports = new[] {
 		  AccessModifier = "public",
 		  Documentation = new string[] { },
 		  Attributes = new string[] { } }
+
 };
 // --------------------------------------------------------- Code End ----------------------------------------------------- #>
 #region Copyright and License

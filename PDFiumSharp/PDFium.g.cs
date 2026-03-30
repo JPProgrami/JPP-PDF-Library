@@ -1872,25 +1872,25 @@ namespace PDFiumSharp
 		#endregion
 
 
-		#region FPDFPage_CountObject
+		#region FPDFPage_CountObjects
 
 		static partial class PlatformInvoke
 		{
-			[DllImport("pdfium_x86", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFPage_CountObject")]
-			internal static extern int FPDFPage_CountObject_x86(FPDF_PAGE page);
+			[DllImport("pdfium_x86", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFPage_CountObjects")]
+			internal static extern int FPDFPage_CountObjects_x86(FPDF_PAGE page);
 
-			[DllImport("pdfium_x64", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFPage_CountObject")]
-			internal static extern int FPDFPage_CountObject_x64(FPDF_PAGE page);
+			[DllImport("pdfium_x64", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFPage_CountObjects")]
+			internal static extern int FPDFPage_CountObjects_x64(FPDF_PAGE page);
 		}
 
-		/// <include file='PDFium.xml' path='Documentation/FPDFPage_CountObject/*'/>
-		public static int FPDFPage_CountObject(FPDF_PAGE page)
+		/// <include file='PDFium.xml' path='Documentation/FPDFPage_CountObjects/*'/>
+		public static int FPDFPage_CountObjects(FPDF_PAGE page)
 		{
 
 			if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
-				lock(_lock) { return PlatformInvoke.FPDFPage_CountObject_x64(page); }
+				lock(_lock) { return PlatformInvoke.FPDFPage_CountObjects_x64(page); }
 			else if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
-				lock(_lock) { return PlatformInvoke.FPDFPage_CountObject_x86(page); }
+				lock(_lock) { return PlatformInvoke.FPDFPage_CountObjects_x86(page); }
 			else
 				throw new PlatformNotSupportedException();
 
@@ -2497,22 +2497,16 @@ namespace PDFiumSharp
 
 		static partial class PlatformInvoke
 		{
-            [DllImport("pdfium_x86", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
-            internal static extern bool FPDFText_SetText_x86(
-    FPDF_PAGEOBJECT text_object,
-    [MarshalAs(UnmanagedType.LPWStr)] string text
-);
+			[DllImport("pdfium_x86", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
+			internal static extern bool FPDFText_SetText_x86(FPDF_PAGEOBJECT text_object, [MarshalAs(UnmanagedType.LPStr)] string text);
 
-            [DllImport("pdfium_x64", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
-            internal static extern bool FPDFText_SetText_x64(
-                FPDF_PAGEOBJECT text_object,
-                [MarshalAs(UnmanagedType.LPWStr)] string text
-            );
-        }
+			[DllImport("pdfium_x64", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFText_SetText")]
+			internal static extern bool FPDFText_SetText_x64(FPDF_PAGEOBJECT text_object, [MarshalAs(UnmanagedType.LPStr)] string text);
+		}
 
-        /// <include file='PDFium.xml' path='Documentation/FPDFText_SetText/*'/>
-        public static bool FPDFText_SetText(FPDF_PAGEOBJECT text_object,[MarshalAs(UnmanagedType.LPWStr)] string text)
-        {
+		/// <include file='PDFium.xml' path='Documentation/FPDFText_SetText/*'/>
+		public static bool FPDFText_SetText(FPDF_PAGEOBJECT text_object, [MarshalAs(UnmanagedType.LPStr)] string text)
+		{
 
 			if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
 				lock(_lock) { return PlatformInvoke.FPDFText_SetText_x64(text_object, text); }
@@ -2545,6 +2539,33 @@ namespace PDFiumSharp
 				lock(_lock) { return PlatformInvoke.FPDFText_LoadFont_x64(document, ref data, size, font_type, cid); }
 			else if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
 				lock(_lock) { return PlatformInvoke.FPDFText_LoadFont_x86(document, ref data, size, font_type, cid); }
+			else
+				throw new PlatformNotSupportedException();
+
+		}
+
+		#endregion
+
+
+		#region FPDFPage_RemoveObject
+
+		static partial class PlatformInvoke
+		{
+			[DllImport("pdfium_x86", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFPage_RemoveObject")]
+			internal static extern bool FPDFPage_RemoveObject_x86(FPDF_PAGE page, FPDF_PAGEOBJECT page_object);
+
+			[DllImport("pdfium_x64", CallingConvention = CallingConvention.StdCall, EntryPoint = "FPDFPage_RemoveObject")]
+			internal static extern bool FPDFPage_RemoveObject_x64(FPDF_PAGE page, FPDF_PAGEOBJECT page_object);
+		}
+
+		/// <include file='PDFium.xml' path='Documentation/FPDFPage_RemoveObject/*'/>
+		public static bool FPDFPage_RemoveObject(FPDF_PAGE page, FPDF_PAGEOBJECT page_object)
+		{
+
+			if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
+				lock(_lock) { return PlatformInvoke.FPDFPage_RemoveObject_x64(page, page_object); }
+			else if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
+				lock(_lock) { return PlatformInvoke.FPDFPage_RemoveObject_x86(page, page_object); }
 			else
 				throw new PlatformNotSupportedException();
 

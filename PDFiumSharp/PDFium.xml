@@ -397,4 +397,24 @@
 	<FPDFPage_SetRotation>
 		
 	</FPDFPage_SetRotation>
+
+	<FPDFPage_RemoveObject>
+		<summary>Remove FPDF_PAGEOBJECT from FPDF_PAGE.</summary>
+		<param name="page">handle to a page</param>
+		<param name="page_object">handle to a page object to be removed.</param>
+		<returns>Returns TRUE on success.</returns>
+	</FPDFPage_RemoveObject>
+
+	<FPDFPage_InsertObjectAtIndex>
+		<summary>Insert page_object into page at the specified index.</summary>
+		<param name="page">handle to a page</param>
+		<param name="page_object">
+			handle to a page object as previously obtained by FPDFPageObj_CreateNew{Path|Rect}() or FPDFPageObj_New{Text|Image}Obj(). Ownership of the object is transferred back to PDFium.
+		</param>
+		<param name="index">
+			the index position to insert the object at. If index equals the current object count, the object will be appended to the end. If index is greater than the object count, the function will fail and return false.
+		</param>
+		<returns>Returns true if successful.</returns>
+	</FPDFPage_InsertObjectAtIndex>
+	
 </Documentation>

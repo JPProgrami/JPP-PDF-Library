@@ -19,6 +19,7 @@ namespace JPP.PDFLibrary
         private int curr_index;
         private int count;
         private PageFormat format;
+        private List<PageInfo> page_info;
 
         public PageFormat Format { get => this.format; set => this.format = value; }
 
@@ -30,6 +31,7 @@ namespace JPP.PDFLibrary
             curr_index = doc.Pages.Count>=0 ? 0 : -1;
             count = curr_index;
             this.format = new PageFormat("LETTER");
+            page_info = new List<PageInfo>();
         }
 
         public PDFEditor()
@@ -38,6 +40,7 @@ namespace JPP.PDFLibrary
             this.ndoc = PDFium.FPDF_CreateNewDocument();
             curr_index = -1;
             this.format = new PageFormat("LETTER");
+            page_info = new List<PageInfo>();
         }
 
         public void addPage()
@@ -45,6 +48,7 @@ namespace JPP.PDFLibrary
             curr_index++;
             count++;
             PDFium.FPDFPage_New(ndoc, curr_index, Format.Width, Format.Height);
+            page_info.Add(new PageInfo());
         }
 
         public void addString(string text)
@@ -55,7 +59,8 @@ namespace JPP.PDFLibrary
             PDFium.FPDFPageObj_Transform(po, 1, 0, 0, 1, 10, this.format.Height-12-10);
             PDFium.FPDFPage_InsertObject(page, ref po);
             PDFium.FPDFPage_GenerateContent(page);
-
+            FPDF_PAGEOBJECT obj = PDFium.FPDFPage_GetObject(page, PDFium.FPDFPage_CountObjects(page) - 1);
+            page_info[curr_index].add(PDFObjectType.String);
         }
         bool ImageFormatHasAlpha(PixelFormat fmt)
         {
@@ -73,7 +78,22 @@ namespace JPP.PDFLibrary
             PDFium.FPDFPageObj_Transform(po, bmp.Width, 0, 0, bmp.Height, 100, 100);
             PDFium.FPDFPage_InsertObject(page, ref po);
             PDFium.FPDFPage_GenerateContent(page);
+            page_info[curr_index].add(PDFObjectType.Image);
 
+        }
+
+        public bool removeObject(string key)
+        {
+            if (page_info[curr_index].hasObj(key))
+            {
+                FPDF_PAGE page = PDFium.FPDF_LoadPage(ndoc, curr_index);
+                FPDF_PAGEOBJECT po = PDFium.FPDFPage_GetObject(page,page_info[curr_index][key]);
+                bool ret = PDFium.FPDFPage_RemoveObject(page, ref po);
+                page_info[curr_index].remove(key);
+                PDFium.FPDFPage_GenerateContent(page);
+                return ret;
+            }
+            return false;
         }
 
         public bool Save(string path)

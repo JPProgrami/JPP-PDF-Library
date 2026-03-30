@@ -369,6 +369,13 @@
 		<returns>Returns a handle to a new document, or NULL on failure.</returns>
 	</FPDF_CreateNewDocument>
 
+	<FPDFPage_RemoveObject>
+		<summary>Remove FPDF_PAGEOBJECT from FPDF_PAGE.</summary>
+		<param name="page">handle to a page</param>
+		<param name="page_object">handle to a page object to be removed.</param>
+		<returns>Returns TRUE on success.</returns>
+	</FPDFPage_RemoveObject>
+
 	<FPDFPage_New>
 		
 	</FPDFPage_New>
